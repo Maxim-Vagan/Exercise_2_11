@@ -1,5 +1,6 @@
 package ru.maxvagan.exercise_2_11.services.impls;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -12,11 +13,13 @@ import java.util.List;
 @Service
 @SessionScope
 public class EBasketServiceImpl implements EBasketService {
-    private EBasket myBasket = new EBasket(Sets.newHashSet());
+    private EBasket myBasket = new EBasket(Lists.newArrayList());
 
     @Override
     public String getHelpInfo() {
-        return "<h1>Справочная информация по работе с электронной корзиной:</h1>";
+        return "<h1>Справочная информация по работе с электронной корзиной:</h1>" +
+                "<h3><p><b>Используйте команду в запросе для добавления списка ID - /add?items=1,2,3,...,N</b></h3>" +
+                "<h3><p><b>Используйте команду в запросе для вывода списка ID - /get</b></h3>";
     }
 
     @Override
@@ -28,7 +31,7 @@ public class EBasketServiceImpl implements EBasketService {
                 myBasket.addItemsList(listItems);
             }
         }
-        return null;
+        return String.format("<h3>В корзину добавлены следующие позиции:</h3><p>%s", myBasket.getItemsSet());
     }
 
     @Override

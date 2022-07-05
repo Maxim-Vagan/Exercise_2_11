@@ -1,5 +1,6 @@
 package ru.maxvagan.exercise_2_11.mainclasses;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -10,13 +11,13 @@ import java.util.Objects;
 import java.util.Set;
 
 public class EBasket {
-    private Set<Integer> itemsSet;
+    private List<Integer> itemsSet;
 
-    public EBasket(Set<Integer> itemsSet) {
+    public EBasket(List<Integer> itemsSet) {
         this.itemsSet = itemsSet;
     }
 
-    public Set<Integer> getItemsSet() {
+    public List<Integer> getItemsSet() {
         return itemsSet;
     }
 
@@ -25,7 +26,7 @@ public class EBasket {
     }
 
     public void setItemsList(List<Integer> itemsList) {
-        this.itemsSet = Sets.newHashSet(itemsList);
+        this.itemsSet = Lists.newArrayList(itemsList);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class EBasket {
     @Override
     public String toString() {
         return "\"EBasket\": {" +
-                "\"itemsSet\": " + itemsSet +
+                "\"itemsList\": " + itemsSet +
                 '}';
     }
 }
